@@ -9,11 +9,19 @@ function App(){
   return (
     <div className="app">
       <NavBar numOfResult={characters.length}/>
-      <div className="main">
-        <CharacterList characters={characters}/>
+      <Main characters={characters}>
+      <CharacterList characters={characters}/>
         <characterDetail/>
-      </div>
+        <Main/>
     </div>
     
+  )
+}
+
+function Main({children}){
+  return(
+<div className="main">
+        {children}
+      </div>
   )
 }
