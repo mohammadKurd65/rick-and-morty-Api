@@ -7,6 +7,7 @@ import NavBar from "./componenet/NavBar";
 import Loader from './componenet/Loader';
 import { Toaster } from 'react-hot-toast';
 import toast from 'react-hot-toast/headless';
+import axios from 'axios';
 
 function App(){
   const[characters, setCharacters] = useState([]);
@@ -16,13 +17,11 @@ function App(){
     async function feachData(){
     try {
       setIsLoading(true)
-      const res = await fetch("https://rickandmortyapi.com/api/character");
-      if(!res.ok) throw new Error("somthing went wrong!..")
-      const data = await res.jason();
+      const {data} = await axios.get("https://rickandmortyapi.com/api/character");
       setCharacters(data.results.slice(0, 5))
       // setIsLoading(false);
-    } catch (error) {
-      toast.error(error.message)
+    } catch (err) {
+      toast.error(err.response.data.error)
     } finally{
       setIsLoading(false)
     }
