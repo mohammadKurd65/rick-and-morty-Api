@@ -1,8 +1,11 @@
 import {EyeIcon} from"@heroicons/react/24/outline"
 import { useState } from "react";
+import Loader from "./Loader";
 
-function CharacterList({Characters}) {
-    
+function CharacterList({Characters,children, isLoading}) {
+    if(isLoading) return <div className="characters-list">
+        <Loader/>
+    </div>
 return (
     <div className="characters-list">
         {
